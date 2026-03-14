@@ -1,50 +1,97 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.20;
 
-contract SchoolFeeTracker {
-    address public admin;
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
+/**
+ * @title SchoolFeeTracker
+ * @dev Tracks school fee payments with on-chain receipt proof
+ */
+contract SchoolFeeTracker is Ownable {
+
+    // ─── Structs ────────────────────────────────────────────────────────────
     struct Receipt {
-        string studentId;
+        string  studentId;
         uint256 amount;
         uint256 timestamp;
-        bool exists;
+        bool    exists;
     }
 
-    // Mapping from transaction hash to Receipt data
-    mapping(bytes32 => Receipt) public receipts;
-    // Mapping to keep track of total paid by a student ID
-    mapping(string => uint256) public balancePaid;
+    // ─── State Variables ─────────────────────────────────────────────────────
+    mapping(string  => uint256)  private _studentBalances;
+    mapping(bytes32 => Receipt)  public  receipts;
 
-    event FeePaid(address indexed payer, string studentId, uint256 amount, uint256 timestamp, bytes32 receiptHash);
+    // ─── Events ──────────────────────────────────────────────────────────────
+    event FeePaid(
+        address indexed payer,
+        string          studentId,
+        uint256         amount,
+        uint256         timestamp,
+        bytes32         receiptHash
+    );
+    event FundsWithdrawn(address indexed owner, uint256 amount);
 
-    constructor() {
-        admin = msg.sender;
-    }
+    // ─── Constructor ─────────────────────────────────────────────────────────
+    constructor() Ownable(msg.sender) {}
 
-    // Function to pay fees
-    function payFees(string memory _studentId) public payable {
-        require(msg.value > 0, "Payment must be greater than 0");
+    // ─── External / Public Functions ─────────────────────────────────────────
 
-        // Create a unique receipt hash based on the transaction
-        bytes32 receiptHash = keccak256(abi.encodePacked(msg.sender, _studentId, msg.value, block.timestamp));
+    /**
+     * @dev Pay school fees for a student. Generates a unique receipt hash.
+     * @param _studentId The student's unique identifier string
+     */
+    function payFee(string memory _studentId) external payable {
+        require(msg.value > 0, "Fee must be greater than zero");
+        require(bytes(_studentId).length > 0, "Student ID cannot be empty");
+
+        bytes32 receiptHash = keccak256(
+            abi.encodePacked(msg.sender, _studentId, msg.value, block.timestamp)
+        );
+
+        require(!receipts[receiptHash].exists, "Duplicate receipt");
 
         receipts[receiptHash] = Receipt({
-            studentId: _studentId,
-            amount: msg.value,
-            timestamp: block.timestamp,
-            exists: true
+            studentId : _studentId,
+            amount    : msg.value,
+            timestamp : block.timestamp,
+            exists    : true
         });
 
-        balancePaid[_studentId] += msg.value;
+        _studentBalances[_studentId] += msg.value;
 
         emit FeePaid(msg.sender, _studentId, msg.value, block.timestamp, receiptHash);
     }
 
-    // Function to verify a receipt via its hash
-    function verifyReceipt(bytes32 _receiptHash) public view returns (string memory, uint256, uint256) {
+    /**
+     * @dev Returns total amount paid by a specific student.
+     * @param _studentId The student's unique identifier string
+     */
+    function getStudentTotalPaid(string memory _studentId) external view returns (uint256) {
+        return _studentBalances[_studentId];
+    }
+
+    /**
+     * @dev Verifies a receipt hash and returns its details.
+     * @param _receiptHash The keccak256 hash of the receipt
+     */
+    function verifyReceipt(bytes32 _receiptHash)
+        external
+        view
+        returns (string memory studentId, uint256 amount, uint256 timestamp)
+    {
         require(receipts[_receiptHash].exists, "Receipt does not exist");
         Receipt memory r = receipts[_receiptHash];
         return (r.studentId, r.amount, r.timestamp);
+    }
+
+    /**
+     * @dev Allows the school admin to withdraw all collected fees.
+     */
+    function withdraw() external onlyOwner {
+        uint256 balance = address(this).balance;
+        require(balance > 0, "No funds to withdraw");
+        (bool success, ) = payable(owner()).call{value: balance}("");
+        require(success, "Withdrawal failed");
+        emit FundsWithdrawn(owner(), balance);
     }
 }
