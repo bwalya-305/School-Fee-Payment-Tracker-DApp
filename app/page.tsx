@@ -50,6 +50,7 @@ export default function PayFeesPage() {
             <Link href="/"          className="text-amber-500 border-b border-amber-500 pb-0.5">Pay Fees</Link>
             <Link href="/verify"    className="text-zinc-500 hover:text-amber-400 transition-colors">Verify Receipt</Link>
             <Link href="/balance"   className="text-zinc-500 hover:text-amber-400 transition-colors">Check Balance</Link>
+            <Link href="/history"   className="text-zinc-500 hover:text-amber-400 transition-colors">Transaction History</Link>
           </nav>
           <ConnectButton />
         </div>
