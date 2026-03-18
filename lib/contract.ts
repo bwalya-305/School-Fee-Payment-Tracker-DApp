@@ -1,19 +1,47 @@
-import { ethers } from "ethers";
-import ProofStorageABI from "../contracts/out/ProofStorage.sol/ProofStorage.json";
+export const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS as `0x${string}`;
 
-export const getProofContract = async() => {
-    if(typeof window === "undefined") {
-        throw new Error("Must be used in browser");
-    }
-    if(!window.ethereum) {
-        throw new Error("MetaMask is not installed");
-    }
-    const provider = new ethers.BrowserProvider(window.ethereum);
-    const signer = await provider.getSigner();
-
-    const contractAddress = process.env.NEXT_PUBLIC_PROOF_ADDRESS;
-    if(!contractAddress) {
-        throw new Error("Contract address not set in .env");
-    }
-    return new ethers. Contract (contractAddress, ProofStorageABI.abi, signer);
-};
+export const CONTRACT_ABI = [
+  {
+    name: 'payFee',
+    type: 'function',
+    stateMutability: 'payable',
+    inputs: [{ name: '_studentId', type: 'string' }],
+    outputs: [],
+  },
+  {
+    name: 'getStudentTotalPaid',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [{ name: '_studentId', type: 'string' }],
+    outputs: [{ name: '', type: 'uint256' }],
+  },
+  {
+    name: 'verifyReceipt',
+    type: 'function',
+    stateMutability: 'view',
+    inputs: [{ name: '_receiptHash', type: 'bytes32' }],
+    outputs: [
+      { name: 'studentId', type: 'string' },
+      { name: 'amount',    type: 'uint256' },
+      { name: 'timestamp', type: 'uint256' },
+    ],
+  },
+  {
+    name: 'withdraw',
+    type: 'function',
+    stateMutability: 'nonpayable',
+    inputs: [],
+    outputs: [],
+  },
+  {
+    name: 'FeePaid',
+    type: 'event',
+    inputs: [
+      { name: 'payer',       type: 'address', indexed: true },
+      { name: 'studentId',   type: 'string',  indexed: false },
+      { name: 'amount',      type: 'uint256', indexed: false },
+      { name: 'timestamp',   type: 'uint256', indexed: false },
+      { name: 'receiptHash', type: 'bytes32', indexed: false },
+    ],
+  },
+] as const;
