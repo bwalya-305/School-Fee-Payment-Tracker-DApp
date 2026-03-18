@@ -42,6 +42,7 @@ export default function BalancePage() {
             <Link href="/"        className="text-zinc-500 hover:text-amber-400 transition-colors">Pay Fees</Link>
             <Link href="/verify"  className="text-zinc-500 hover:text-amber-400 transition-colors">Verify Receipt</Link>
             <Link href="/balance" className="text-amber-500 border-b border-amber-500 pb-0.5">Check Balance</Link>
+            <Link href="/history"  className="text-zinc-500 hover:text-amber-400 transition-colors">Transaction History</Link>
           </nav>
           <ConnectButton />
         </div>
