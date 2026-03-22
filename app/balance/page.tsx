@@ -36,7 +36,7 @@ export default function BalancePage() {
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-amber-500 flex items-center justify-center text-black font-bold text-sm">SF</div>
-            <span className="text-amber-500 font-bold tracking-widest text-sm uppercase">SchoolFee Tracker</span>
+            <span className="text-amber-500 font-bold tracking-widest text-sm uppercase">School Fee Payment Tracker</span>
           </div>
           <nav className="flex items-center gap-6 text-xs tracking-widest uppercase">
             <Link href="/"        className="text-zinc-500 hover:text-amber-400 transition-colors">Pay Fees</Link>
