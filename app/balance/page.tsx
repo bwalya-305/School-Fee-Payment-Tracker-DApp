@@ -57,7 +57,7 @@ export default function BalancePage() {
         </h1>
         <p className="text-zinc-400 text-sm max-w-md leading-relaxed">
           Look up the total fees paid by any student ID.
-          All data is read directly from the blockchain — real-time and trustless.
+          All data is read directly from the blockchain in real-time and trustless.
         </p>
       </section>
 

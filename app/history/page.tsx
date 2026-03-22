@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useBalance } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
-import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../lib/contract';
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from '../../lib/contract';
 
 export default function PayFeesPage() {
   const { isConnected, address } = useAccount();
