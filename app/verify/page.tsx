@@ -38,7 +38,7 @@ export default function VerifyPage() {
         <div className="max-w-5xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 bg-amber-500 flex items-center justify-center text-black font-bold text-sm">SF</div>
-            <span className="text-amber-500 font-bold tracking-widest text-sm uppercase">SchoolFee Tracker</span>
+            <span className="text-amber-500 font-bold tracking-widest text-sm uppercase">School Fee Payment Tracker</span>
           </div>
           <nav className="flex items-center gap-6 text-xs tracking-widest uppercase">
             <Link href="/"        className="text-zinc-500 hover:text-amber-400 transition-colors">Pay Fees</Link>
@@ -46,13 +46,13 @@ export default function VerifyPage() {
             <Link href="/balance" className="text-zinc-500 hover:text-amber-400 transition-colors">Check Balance</Link>
             <Link href="/history"  className="text-zinc-500 hover:text-amber-400 transition-colors">Transaction History</Link>
           </nav>
-          <ConnectButton />
+          <ConnectButton showBalance={false} />
         </div>
       </header>
 
       {/* Hero */}
       <section className="max-w-5xl mx-auto px-6 pt-16 pb-8">
-        <div className="text-xs tracking-[0.3em] uppercase text-amber-500/60 mb-3">— On-chain Proof</div>
+        <div className="text-xs tracking-[0.3em] uppercase text-amber-500/60 mb-3">On-chain Proof</div>
         <h1 className="text-5xl font-bold tracking-tight leading-none mb-4">
           Verify<br />
           <span className="text-amber-500">Receipt.</span>
