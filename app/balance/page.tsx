@@ -44,13 +44,13 @@ export default function BalancePage() {
             <Link href="/balance" className="text-amber-500 border-b border-amber-500 pb-0.5">Check Balance</Link>
             <Link href="/history"  className="text-zinc-500 hover:text-amber-400 transition-colors">Transaction History</Link>
           </nav>
-          <ConnectButton />
+          <ConnectButton showBalance={false} />
         </div>
       </header>
 
       {/* Hero */}
       <section className="max-w-5xl mx-auto px-6 pt-16 pb-8">
-        <div className="text-xs tracking-[0.3em] uppercase text-amber-500/60 mb-3">— Fee Records</div>
+        <div className="text-xs tracking-[0.3em] uppercase text-amber-500/60 mb-3">Fee Records</div>
         <h1 className="text-5xl font-bold tracking-tight leading-none mb-4">
           Check<br />
           <span className="text-amber-500">Balance.</span>
