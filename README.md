@@ -1,6 +1,6 @@
 # 🎓 School Fee Payment Tracker DApp
 
-A full-stack Web3 decentralized application for tracking school fee payments on the Ethereum blockchain. Every payment generates a tamper-proof, on-chain receipt hash that can be independently verified at any time — no middlemen, no trust required.
+A full-stack Web3 decentralized application for tracking school fee payments on the Ethereum blockchain. Every payment generates a tamper-proof, on-chain receipt hash that can be independently verified at any time - no middlemen, no trust required.
 
 ---
 
@@ -23,26 +23,26 @@ A full-stack Web3 decentralized application for tracking school fee payments on 
 
 ## Overview
 
-The School Fee Payment Tracker DApp solves a critical transparency problem in educational institutions — the inability to independently verify fee payments without relying on a central authority.
+The School Fee Payment Tracker DApp solves a critical transparency problem in educational institutions - the inability to independently verify fee payments without relying on a central authority.
 
 By recording every payment on the Ethereum blockchain, this DApp provides:
 - **Immutable proof of payment** via on-chain receipt hashes
 - **Transparent fee records** accessible to students, parents, and administrators
-- **Trustless verification** — anyone can verify a receipt without contacting the school
+- **Trustless verification** - anyone can verify a receipt without contacting the school
 - **Secure fund management** with admin-only withdrawal controls
 
 ---
 
 ## Features
 
-- ✅ **Pay Fees** — Submit fee payments on-chain with a student ID
-- ✅ **Receipt Generation** — Every payment generates a unique `keccak256` receipt hash
-- ✅ **Verify Receipt** — Look up any receipt hash to confirm payment details
-- ✅ **Balance Lookup** — Check total fees paid by any student ID
-- ✅ **Transaction History** — View full on-chain payment history for a student
-- ✅ **Admin Withdrawal** — School admin can securely withdraw collected fees
-- ✅ **Wallet Integration** — RainbowKit + wagmi for seamless wallet connection
-- ✅ **Sepolia Testnet** — Deployed and verified on Ethereum Sepolia
+- ✅ **Pay Fees** - Submit fee payments on-chain with a student ID
+- ✅ **Receipt Generation** - Every payment generates a unique `keccak256` receipt hash
+- ✅ **Verify Receipt** - Look up any receipt hash to confirm payment details
+- ✅ **Balance Lookup** - Check total fees paid by any student ID
+- ✅ **Transaction History** - View full on-chain payment history for a student
+- ✅ **Admin Withdrawal** - School admin can securely withdraw collected fees
+- ✅ **Wallet Integration** - RainbowKit + wagmi for seamless wallet connection
+- ✅ **Sepolia Testnet** - Deployed and verified on Ethereum Sepolia
 
 ---
 
