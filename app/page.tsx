@@ -332,11 +332,42 @@ export default function PayFeesPage() {
 
                 <div className="border border-zinc-800 bg-black p-3 space-y-2">
                   <p className="text-xs text-zinc-400 font-bold">⚠ Save your transaction hash</p>
-                  <p className="text-xs text-zinc-600 leading-relaxed">
-                    Use it on the{' '}
-                    <Link href="/verify" className="text-amber-500 hover:underline">Verify Receipt</Link>{' '}
-                    page to confirm this payment at any time. Anyone with this hash can verify it.
-                  </p>
+                  <div className="border border-zinc-800 bg-black p-4 space-y-3">
+                    <p className="text-xs text-zinc-400 font-bold uppercase tracking-widest">
+                      What to do next
+                    </p>
+                    <div className="flex items-start gap-2 text-xs text-zinc-500">
+                      <span className="text-amber-500 flex-shrink-0">01</span>
+                      <span>
+                        Go to{' '}
+                        <Link href="/history" className="text-amber-500 hover:underline">
+                          Transaction History
+                        </Link>{' '}
+                        and enter your Student ID to find your receipt hash.
+                      </span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-zinc-500">
+                      <span className="text-amber-500 flex-shrink-0">02</span>
+                      <span>Click the 📋 icon to copy your receipt hash.</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs text-zinc-500">
+                      <span className="text-amber-500 flex-shrink-0">03</span>
+                      <span>
+                        Paste it into the{' '}
+                        <Link href="/verify" className="text-amber-500 hover:underline">
+                          Verify Receipt
+                        </Link>{' '}
+                        page to get permanent proof of payment.
+                      </span>
+                    </div>
+                  </div>
+                  
+                      <Link
+                        href="/history"
+                        className="block text-center text-xs bg-amber-500 text-black font-bold py-3 tracking-widest uppercase hover:bg-amber-400 transition-colors"
+                      >
+                        View Transaction History →
+                      </Link>
                 </div>
               </div>
             )}
